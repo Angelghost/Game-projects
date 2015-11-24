@@ -1,0 +1,7 @@
+Character :
+-un personnage
+-des level
+-des stats
+-vie
+-mana
+-un inventaire
