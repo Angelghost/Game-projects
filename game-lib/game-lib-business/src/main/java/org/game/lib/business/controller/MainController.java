@@ -11,6 +11,8 @@ public class MainController  {
 
 	private boolean isFinish = false;
 	
+	private int food = 0;
+	
 	public List<Human> getHumanList() {
 		return humanList;
 	}
@@ -25,6 +27,14 @@ public class MainController  {
 
 	public void setFinish(boolean isFinish) {
 		this.isFinish = isFinish;
+	}
+
+	public int getFood() {
+		return food;
+	}
+
+	public void setFood(int food) {
+		this.food = food;
 	}
 
 }
