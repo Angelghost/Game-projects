@@ -17,25 +17,27 @@ public class InputController implements Runnable {
 
 	public void run() {
 
+		BufferedReader bufferRead = new BufferedReader(new InputStreamReader(
+				System.in));
 		String input = null;
-		while (!"exit".equals(input)) {
-			BufferedReader bufferRead = new BufferedReader(
-					new InputStreamReader(System.in));
-			try {
+		try {
+			while (!"exit".equals(input)) {
 				input = bufferRead.readLine();
-			} catch (IOException e) {
+
+				if (!"exit".equals(input)) {
+					mainController.getHumanList().add(new Human());
+					System.out.println("You have "
+							+ mainController.getHumanList().size() + " humans");
+				} else {
+					bufferRead.close();
+
+				}
 			}
 
-			if (!"exit".equals(input)) {
-				mainController.getHumanList().add(new Human());
-
-			}
-			System.out.println("You have "
-					+ mainController.getHumanList().size() + " humans");
+		} catch (IOException e) {
 		}
-		
 		mainController.setFinish(true);
-		
+
 		Thread.currentThread().interrupt();
 
 	}
