@@ -1,0 +1,22 @@
+<JobList>
+	<Job>
+		<jobName>Novice Farmer</jobName>
+		<jobType>FARMER</jobType>
+		<modificationList>
+			<modification>
+				<modificationType>FOOD</modificationType>
+				<value>+10</value>
+			</modification>
+		</modificationList>
+	</Job>
+	<Job>
+		<jobName>Expert Farmer</jobName>
+		<jobType>FARMER</jobType>
+		<modificationList>
+			<modification>
+				<modificationType>FOOD</modificationType>
+				<value>+20</value>
+			</modification>
+		</modificationList>
+	</Job>
+</JobList>
