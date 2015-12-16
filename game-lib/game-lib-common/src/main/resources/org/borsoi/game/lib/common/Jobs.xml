@@ -2,6 +2,7 @@
 	<Job>
 		<jobName>Novice Farmer</jobName>
 		<jobType>FARMER</jobType>
+		<jobLevel>NOVICE</jobLevel>
 		<modificationList>
 			<modification>
 				<modificationType>FOOD</modificationType>
@@ -12,6 +13,7 @@
 	<Job>
 		<jobName>Expert Farmer</jobName>
 		<jobType>FARMER</jobType>
+		<jobLevel>EXPERT</jobLevel>
 		<modificationList>
 			<modification>
 				<modificationType>FOOD</modificationType>

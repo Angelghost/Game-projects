@@ -33,12 +33,12 @@ public class MainController
         return true;
     }
 
-    public List<Human> getHumanList()
+    public synchronized List<Human> getHumanList()
     {
         return humanList;
     }
 
-    public void setHumanList(List<Human> humanList)
+    public synchronized void setHumanList(List<Human> humanList)
     {
         this.humanList = humanList;
     }

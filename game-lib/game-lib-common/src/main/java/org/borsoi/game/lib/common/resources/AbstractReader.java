@@ -1,6 +1,7 @@
 package org.borsoi.game.lib.common.resources;
 
 import java.io.File;
+import java.net.URL;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -14,9 +15,18 @@ public abstract class AbstractReader
     public Object getObject()
     {
 
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(getLabelResourceFile()).getFile());
-        XStream xStream = getXStream();
-        return xStream.fromXML(file);
+        if (getLabelResourceFile() != null)
+        {
+            ClassLoader classLoader = getClass().getClassLoader();
+            URL resource = classLoader.getResource(getLabelResourceFile());
+            if (resource != null && resource.getFile() != null)
+            {
+                File file = new File(resource.getFile());
+                XStream xStream = getXStream();
+                return xStream.fromXML(file);
+            }
+        }
+
+        return null;
     }
 }

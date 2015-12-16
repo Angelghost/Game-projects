@@ -2,6 +2,7 @@ package org.borsoi.game.lib.object.object.job;
 
 import java.util.List;
 
+import org.borsoi.game.lib.object.enumeric.JobLevel;
 import org.borsoi.game.lib.object.enumeric.JobType;
 
 public class Job
@@ -10,6 +11,8 @@ public class Job
     private String jobName;
 
     private JobType jobType;
+
+    private JobLevel jobLevel;
 
     private List<Modification> modificationList;
 
@@ -55,5 +58,23 @@ public class Job
     public void setModificationList(List<Modification> pModificationList)
     {
         modificationList = pModificationList;
+    }
+
+    /**
+     * Return jobLevel
+     * @return jobLevel
+     */
+    public JobLevel getJobLevel()
+    {
+        return jobLevel;
+    }
+
+    /**
+     * Set jobLevel
+     * @param pJobLevel jobLevel
+     */
+    public void setJobLevel(JobLevel pJobLevel)
+    {
+        jobLevel = pJobLevel;
     }
 }
