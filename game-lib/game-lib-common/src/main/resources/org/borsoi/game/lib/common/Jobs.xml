@@ -21,4 +21,15 @@
 			</modification>
 		</modificationList>
 	</Job>
+	<Job>
+		<jobName>Novice Woodcutter</jobName>
+		<jobType>WOODCUTTER</jobType>
+		<jobLevel>NOVICE</jobLevel>
+		<modificationList>
+			<modification>
+				<modificationType>WOOD</modificationType>
+				<value>+10</value>
+			</modification>
+		</modificationList>
+	</Job>
 </JobList>
