@@ -6,6 +6,7 @@ import java.util.Map;
 import org.borsoi.game.lib.object.enumeric.ResourceType;
 import org.borsoi.game.lib.object.object.job.Modification;
 import org.borsoi.game.lib.object.object.job.Resource;
+import org.borsoi.game.lib.object.object.map.GameMap;
 
 public class UserContext
 {
@@ -14,6 +15,8 @@ public class UserContext
     private Map<ResourceType, Double> totalModificationMap;
 
     private List<Modification> modificationList;
+
+    private GameMap gameMap;
 
     /**
      * Return modificationList
@@ -65,6 +68,24 @@ public class UserContext
     public void setResourceMap(Map<ResourceType, Resource> pResourceMap)
     {
         resourceMap = pResourceMap;
+    }
+
+    /**
+     * Return gameMap
+     * @return gameMap
+     */
+    public GameMap getGameMap()
+    {
+        return gameMap;
+    }
+
+    /**
+     * Set gameMap
+     * @param pGameMap gameMap
+     */
+    public void setGameMap(GameMap pGameMap)
+    {
+        gameMap = pGameMap;
     }
 
 }

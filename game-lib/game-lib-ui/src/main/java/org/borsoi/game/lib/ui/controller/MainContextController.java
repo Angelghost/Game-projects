@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 
 import org.borsoi.game.lib.business.controller.MainController;
 import org.borsoi.game.lib.business.timer.MainTimer;
+import org.borsoi.game.lib.object.object.map.GameMap;
 import org.borsoi.game.lib.ui.contants.ControllerNameConstants;
 
 @ManagedBean(name = ControllerNameConstants.MAIN_CONTEXT_CONTROLLER)
@@ -42,6 +43,11 @@ public class MainContextController
     public void updatePage()
     {
         outputController.showMainScreen(mainController);
+    }
+
+    public GameMap getGameMap()
+    {
+        return mainController.getUserContext().getGameMap();
     }
 
     /**

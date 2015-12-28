@@ -10,6 +10,7 @@ import org.borsoi.game.lib.object.object.UserContext;
 import org.borsoi.game.lib.object.object.human.Human;
 import org.borsoi.game.lib.object.object.job.Modification;
 import org.borsoi.game.lib.object.object.job.Resource;
+import org.borsoi.game.lib.object.object.map.GameMap;
 
 public class MainController
 {
@@ -33,6 +34,7 @@ public class MainController
         userContext.setModificationList(new ArrayList<Modification>());
         userContext.setTotalModificationMap(new HashMap<ResourceType, Double>());
 
+        userContext.setGameMap(new GameMap());
     }
 
     public void addNewHuman()
