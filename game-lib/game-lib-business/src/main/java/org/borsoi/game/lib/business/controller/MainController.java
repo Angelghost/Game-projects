@@ -3,6 +3,7 @@ package org.borsoi.game.lib.business.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.borsoi.game.lib.object.enumeric.ResourceType;
 import org.borsoi.game.lib.object.object.UserContext;
@@ -24,11 +25,11 @@ public class MainController
         userContext = new UserContext();
 
         // TODO move to init of userContext with read xml file
-        userContext.setResourceList(new ArrayList<Resource>());
+        userContext.setResourceMap(new HashMap<ResourceType, Resource>());
         Resource resource = new Resource();
         resource.setResourceType(ResourceType.FOOD);
         resource.setValue(200);
-        userContext.getResourceList().add(resource);
+        userContext.getResourceMap().put(ResourceType.FOOD, resource);
         userContext.setModificationList(new ArrayList<Modification>());
         userContext.setTotalModificationMap(new HashMap<ResourceType, Double>());
 
@@ -75,6 +76,28 @@ public class MainController
 
     public boolean updateUserContext()
     {
+
+        if (userContext != null && userContext.getTotalModificationMap() != null)
+        {
+            Map<ResourceType, Resource> resourceMap = userContext.getResourceMap();
+            for (ResourceType resourceType : userContext.getTotalModificationMap().keySet())
+            {
+                if (resourceMap.containsKey(resourceType))
+                {
+                    resourceMap.get(resourceType).setValue(
+                        resourceMap.get(resourceType).getValue()
+                            + userContext.getTotalModificationMap().get(resourceType));
+                }
+                else
+                {
+                    Resource resource = new Resource();
+                    resource.setResourceType(resourceType);
+                    resource.setValue(userContext.getTotalModificationMap().get(resourceType));
+                    resourceMap.put(resourceType, resource);
+                }
+            }
+
+        }
 
         return true;
     }

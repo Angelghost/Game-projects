@@ -28,7 +28,11 @@
 		</p:panel>
 		<p:commandButton value="Update" id="ajax"
 			action="#{mainContextController.updatePage()}" update="screen" />
+		<p:commandButton value="H" action="#{inputController.addHuman()}"
+			update="screen" />
 		<p:commandButton value="F" action="#{inputController.addFarmer()}"
+			update="screen" />
+		<p:commandButton value="W" action="#{inputController.addWoodCutter()}"
 			update="screen" />
 	</h:form>
 

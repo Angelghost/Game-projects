@@ -49,9 +49,9 @@ public class OutputController
         if (userContext != null)
         {
             result.add("Resources    : ");
-            if (userContext.getResourceList() != null)
+            if (userContext.getResourceMap() != null)
             {
-                for (Resource resource : userContext.getResourceList())
+                for (Resource resource : userContext.getResourceMap().values())
                 {
                     result.add(resource.getResourceType().toString() + "          " + resource.getValue());
                 }

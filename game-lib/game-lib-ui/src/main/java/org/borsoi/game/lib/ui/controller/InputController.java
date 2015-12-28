@@ -94,6 +94,16 @@ public class InputController
 
     }
 
+    public void addHuman()
+    {
+        if (mainController == null)
+        {
+            mainController = mainContextController.getMainController();
+        }
+        mainController.addNewHuman();
+        mainContextController.updatePage();
+    }
+
     public void addFarmer()
     {
         if (mainController == null)
@@ -101,6 +111,17 @@ public class InputController
             mainController = mainContextController.getMainController();
         }
         mainController.setHumanList(callToAddJob(JobType.FARMER));
+        mainController.updateModifcation();
+        mainContextController.updatePage();
+    }
+
+    public void addWoodCutter()
+    {
+        if (mainController == null)
+        {
+            mainController = mainContextController.getMainController();
+        }
+        mainController.setHumanList(callToAddJob(JobType.WOODCUTTER));
         mainController.updateModifcation();
         mainContextController.updatePage();
     }

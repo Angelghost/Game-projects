@@ -1,4 +1,3 @@
-
 package org.borsoi.game.lib.object.object;
 
 import java.util.List;
@@ -10,12 +9,11 @@ import org.borsoi.game.lib.object.object.job.Resource;
 
 public class UserContext
 {
-    private List<Resource> resourceList;
+    private Map<ResourceType, Resource> resourceMap;
 
-    private	Map<ResourceType, Double> totalModificationMap;
+    private Map<ResourceType, Double> totalModificationMap;
 
     private List<Modification> modificationList;
-
 
     /**
      * Return modificationList
@@ -35,32 +33,38 @@ public class UserContext
         modificationList = pModificationList;
     }
 
-	/**
-	 * @return the totalModificationMap
-	 */
-	public Map<ResourceType, Double> getTotalModificationMap() {
-		return totalModificationMap;
-	}
+    /**
+     * @return the totalModificationMap
+     */
+    public Map<ResourceType, Double> getTotalModificationMap()
+    {
+        return totalModificationMap;
+    }
 
-	/**
-	 * @param totalModificationMap the totalModificationMap to set
-	 */
-	public void setTotalModificationMap(Map<ResourceType, Double> totalModificationMap) {
-		this.totalModificationMap = totalModificationMap;
-	}
+    /**
+     * @param totalModificationMap the totalModificationMap to set
+     */
+    public void setTotalModificationMap(Map<ResourceType, Double> totalModificationMap)
+    {
+        this.totalModificationMap = totalModificationMap;
+    }
 
-	/**
-	 * @return the resourceList
-	 */
-	public List<Resource> getResourceList() {
-		return resourceList;
-	}
+    /**
+     * Return resourceMap
+     * @return resourceMap
+     */
+    public Map<ResourceType, Resource> getResourceMap()
+    {
+        return resourceMap;
+    }
 
-	/**
-	 * @param resourceList the resourceList to set
-	 */
-	public void setResourceList(List<Resource> resourceList) {
-		this.resourceList = resourceList;
-	}
+    /**
+     * Set resourceMap
+     * @param pResourceMap resourceMap
+     */
+    public void setResourceMap(Map<ResourceType, Resource> pResourceMap)
+    {
+        resourceMap = pResourceMap;
+    }
 
 }
