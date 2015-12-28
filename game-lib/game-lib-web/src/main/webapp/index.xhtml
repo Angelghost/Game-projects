@@ -3,19 +3,33 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 </h:head>
 <h:body>
-	<h1>Hello World PrimeFaces</h1>
+	<h1>GAME LIB:</h1>
 
+	<script type="text/javascript">
+		setInterval(function() {
+			updateCommand();
+		}, 5 * 1000);
+	</script>
 	<h:form>
-
-		<h:outputText id="textDisplay" value="" />
-
-
-		<p:commandButton value="Ajax Submit" id="ajax" update="textDisplay" />
+		<p:panel id="screen">
+			<p:remoteCommand name="updateCommand" update="screen"
+				action="#{mainContextController.updatePage()}" />
+			<c:forEach items="#{outputController.output}" var="output">
+				<div style="white-space: pre-wrap">
+					<h:outputText value="#{output}" />
+				</div>
+			</c:forEach>
+		</p:panel>
+		<p:commandButton value="Update" id="ajax"
+			action="#{mainContextController.updatePage()}" update="screen" />
+		<p:commandButton value="F" action="#{inputController.addFarmer()}"
+			update="screen" />
 	</h:form>
 
 </h:body>

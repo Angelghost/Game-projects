@@ -1,4 +1,3 @@
-
 package org.borsoi.game.lib.business.controller;
 
 import java.util.ArrayList;
@@ -11,99 +10,111 @@ import org.borsoi.game.lib.object.object.human.Human;
 import org.borsoi.game.lib.object.object.job.Modification;
 import org.borsoi.game.lib.object.object.job.Resource;
 
-public class MainController {
+public class MainController
+{
 
-	private List<Human> humanList = new ArrayList<Human>();
+    private List<Human> humanList = new ArrayList<Human>();
 
-	private boolean isFinish = false;
+    private boolean isFinish = false;
 
-	private UserContext userContext;
+    private UserContext userContext;
 
-	public MainController() {
-		userContext = new UserContext();
+    public MainController()
+    {
+        userContext = new UserContext();
 
-		// TODO move to init of userContext with read xml file
-		userContext.setResourceList(new ArrayList<Resource>());
-		Resource resource = new Resource();
-		resource.setResourceType(ResourceType.FOOD);
-		resource.setValue(200);
-		userContext.getResourceList().add(resource);
-		userContext.setModificationList(new ArrayList<Modification>());
-		userContext
-				.setTotalModificationMap(new HashMap<ResourceType, Double>());
+        // TODO move to init of userContext with read xml file
+        userContext.setResourceList(new ArrayList<Resource>());
+        Resource resource = new Resource();
+        resource.setResourceType(ResourceType.FOOD);
+        resource.setValue(200);
+        userContext.getResourceList().add(resource);
+        userContext.setModificationList(new ArrayList<Modification>());
+        userContext.setTotalModificationMap(new HashMap<ResourceType, Double>());
 
-	}
+    }
 
-	public void addNewHuman() {
-		getHumanList().add(new Human());
-		updateModifcation();
-	}
+    public void addNewHuman()
+    {
+        getHumanList().add(new Human());
+        updateModifcation();
+    }
 
-	private void updateModifcation() {
+    public void updateModifcation()
+    {
 
-		List<Modification> modificationList = new ArrayList<Modification>();
-		for (Human human : humanList) {
-			if (human.getJob() != null
-					&& human.getJob().getModificationList() != null) {
-				modificationList.addAll(human.getJob().getModificationList());
+        List<Modification> modificationList = new ArrayList<Modification>();
+        for (Human human : humanList)
+        {
+            if (human.getJob() != null && human.getJob().getModificationList() != null)
+            {
+                modificationList.addAll(human.getJob().getModificationList());
 
-			}
-		}
-		userContext.setModificationList(modificationList);
-		HashMap<ResourceType, Double> totalMap = new HashMap<ResourceType, Double>();
-		if (!modificationList.isEmpty()) {
-			for (Modification modification : modificationList) {
-				if (totalMap.containsKey(modification.getModificationType())) {
-					totalMap.put(modification.getModificationType(),
-							totalMap.get(modification.getModificationType())
-									+ modification.getValue());
-				} else {
-					totalMap.put(modification.getModificationType(), modification.getValue());
-				}
-			}
+            }
+        }
+        userContext.setModificationList(modificationList);
+        HashMap<ResourceType, Double> totalMap = new HashMap<ResourceType, Double>();
+        if (!modificationList.isEmpty())
+        {
+            for (Modification modification : modificationList)
+            {
+                if (totalMap.containsKey(modification.getModificationType()))
+                {
+                    totalMap.put(modification.getModificationType(), totalMap.get(modification.getModificationType())
+                        + modification.getValue());
+                }
+                else
+                {
+                    totalMap.put(modification.getModificationType(), modification.getValue());
+                }
+            }
 
-		}
-		userContext.setTotalModificationMap(totalMap);
-	}
+        }
+        userContext.setTotalModificationMap(totalMap);
+    }
 
-	public boolean updateUserContext() {
+    public boolean updateUserContext()
+    {
 
-		return true;
-	}
+        return true;
+    }
 
-	public synchronized List<Human> getHumanList() {
-		return humanList;
-	}
+    public synchronized List<Human> getHumanList()
+    {
+        return humanList;
+    }
 
-	public synchronized void setHumanList(List<Human> humanList) {
-		this.humanList = humanList;
-	}
+    public synchronized void setHumanList(List<Human> humanList)
+    {
+        this.humanList = humanList;
+    }
 
-	public boolean isFinish() {
-		return isFinish;
-	}
+    public boolean isFinish()
+    {
+        return isFinish;
+    }
 
-	public void setFinish(boolean isFinish) {
-		this.isFinish = isFinish;
-	}
+    public void setFinish(boolean isFinish)
+    {
+        this.isFinish = isFinish;
+    }
 
-	/**
-	 * Return userContext
-	 * 
-	 * @return userContext
-	 */
-	public UserContext getUserContext() {
-		return userContext;
-	}
+    /**
+     * Return userContext
+     * @return userContext
+     */
+    public UserContext getUserContext()
+    {
+        return userContext;
+    }
 
-	/**
-	 * Set userContext
-	 * 
-	 * @param pUserContext
-	 *            userContext
-	 */
-	public void setUserContext(UserContext pUserContext) {
-		userContext = pUserContext;
-	}
+    /**
+     * Set userContext
+     * @param pUserContext userContext
+     */
+    public void setUserContext(UserContext pUserContext)
+    {
+        userContext = pUserContext;
+    }
 
 }

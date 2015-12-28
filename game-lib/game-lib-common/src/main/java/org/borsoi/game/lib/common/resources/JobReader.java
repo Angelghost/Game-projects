@@ -1,4 +1,3 @@
-
 package org.borsoi.game.lib.common.resources;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class JobReader
 {
     private static JobReader instance = new JobReader();
 
-    public static final String RESSOURCE_FILE = "org/borsoi/game/lib/common/Jobs.xml";
+    public static final String RESSOURCE_FILE = "/org/borsoi/game/lib/common/Jobs.xml";
 
     private List<Job> jobList;
 

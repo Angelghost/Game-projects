@@ -1,5 +1,6 @@
 package org.borsoi.game.lib.object.enumeric;
 
-public enum JobType {
-	NONE,FARMER,SOLDIER;
+public enum JobType
+{
+    NONE, FARMER, WOODCUTTER, SOLDIER;
 }
