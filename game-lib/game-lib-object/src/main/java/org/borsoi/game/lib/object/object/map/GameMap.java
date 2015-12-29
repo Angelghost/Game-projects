@@ -26,9 +26,9 @@ public class GameMap
         return null;
     }
 
-    public void putTitle(int x, int y, Object pValue)
+    public void putTitle(int x, int y, float type, Object pValue)
     {
-        Tile tile = new Tile(x, y);
+        Tile tile = new Tile(x, y, type);
         tile.setValue(pValue);
 
         if (map.containsKey(x))

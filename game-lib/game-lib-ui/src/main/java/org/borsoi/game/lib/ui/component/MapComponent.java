@@ -1,5 +1,6 @@
 package org.borsoi.game.lib.ui.component;
 
+import java.awt.Color;
 import java.io.IOException;
 
 import javax.faces.component.FacesComponent;
@@ -8,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import org.borsoi.game.lib.object.object.map.GameMap;
+import org.borsoi.game.lib.object.object.map.Tile;
 
 @FacesComponent("components.MapComponent")
 public class MapComponent
@@ -43,7 +45,16 @@ public class MapComponent
                     if (value.getTitle(i, y) == null)
                     {
                         writer.startElement("td", null);
-                        writer.writeAttribute("style", "background-color:#EEE;  width:20px;", "");
+                        writer.writeAttribute("style", "background-color:#EEE;  width:20px; border:none;", "");
+                        writer.endElement("td");
+                    }
+                    else
+                    {
+                        Tile tile = value.getTitle(i, y);
+
+                        writer.startElement("td", null);
+                        writer.writeAttribute("style", "background-color:" + getColor(tile.getType())
+                            + ";  width:20px; border:none;padding-right: 4px;padding-left: 4px;height: 20px;", "");
                         writer.endElement("td");
                     }
 
@@ -52,5 +63,51 @@ public class MapComponent
             }
             writer.endElement("table");
         }
+    }
+
+    private String getColor(float t)
+    {
+
+        Color startColor;
+        Color endColor;
+        if (0 < t && t < 0.3)
+        {
+            startColor = new Color(164, 164, 164);
+            endColor = new Color(204, 204, 204);
+            return getColor(t, 0.3f, startColor, endColor);
+
+        }
+        else if (0.3 <= t && t < 0.5)
+        {
+            startColor = Color.GRAY;
+            endColor = Color.GREEN;
+            return getColor(t, 0.5f, startColor, endColor);
+
+        }
+        else if (0.5 <= t && t < 0.6)
+        {
+            startColor = Color.GREEN;
+            endColor = Color.YELLOW;
+            return getColor(t, 0.6f, startColor, endColor);
+
+        }
+        else
+        {
+            startColor = Color.YELLOW;
+            endColor = Color.BLUE;
+            return getColor(t, 1f, startColor, endColor);
+        }
+    }
+
+    private String getColor(float t, float max, Color startColor, Color endColor)
+    {
+        float u = max - t;
+
+        Color color =
+            new Color((int) (startColor.getRed() * u + endColor.getRed() * t),
+                (int) (startColor.getGreen() * u + endColor.getGreen() * t),
+                (int) (startColor.getBlue() * u + endColor.getBlue() * t), 255);
+
+        return "#" + Integer.toHexString(color.getRGB()).substring(2);
     }
 }

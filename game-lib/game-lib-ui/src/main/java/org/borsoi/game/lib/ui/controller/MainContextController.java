@@ -40,6 +40,11 @@ public class MainContextController
         outputController.showMainScreen(mainController);
     }
 
+    public void generateMap()
+    {
+        mainController.generateMap();
+    }
+
     public void updatePage()
     {
         outputController.showMainScreen(mainController);

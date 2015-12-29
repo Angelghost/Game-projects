@@ -12,11 +12,11 @@
 <h:body>
 	<h1>GAME LIB:</h1>
 
-	<script type="text/javascript">
-		setInterval(function() {
-			updateCommand();
-		}, 5 * 1000);
-	</script>
+	<!-- 	<script type="text/javascript"> 
+// 		setInterval(function() {
+// 			updateCommand();
+// 		}, 5 * 1000);
+	</script> -->
 	<h:form>
 		<p:remoteCommand name="updateCommand" update="screen"
 			action="#{mainContextController.updatePage()}" />
@@ -28,10 +28,12 @@
 					</div>
 				</c:forEach>
 			</p:panel>
-		<b:mapComponent value="#{mainContextController.getGameMap()}"/>
+			<b:mapComponent value="#{mainContextController.getGameMap()}" />
 		</p:panelGrid>
 		<p:commandButton value="Update" id="ajax"
 			action="#{mainContextController.updatePage()}" update="screen" />
+		<p:commandButton value="New map"
+			action="#{mainContextController.generateMap()}" update="screen" />
 		<p:commandButton value="H" action="#{inputController.addHuman()}"
 			update="screen" />
 		<p:commandButton value="F" action="#{inputController.addFarmer()}"

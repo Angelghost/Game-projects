@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.borsoi.game.lib.business.utils.MapUtility;
 import org.borsoi.game.lib.object.enumeric.ResourceType;
 import org.borsoi.game.lib.object.object.UserContext;
 import org.borsoi.game.lib.object.object.human.Human;
 import org.borsoi.game.lib.object.object.job.Modification;
 import org.borsoi.game.lib.object.object.job.Resource;
-import org.borsoi.game.lib.object.object.map.GameMap;
 
 public class MainController
 {
@@ -34,7 +34,13 @@ public class MainController
         userContext.setModificationList(new ArrayList<Modification>());
         userContext.setTotalModificationMap(new HashMap<ResourceType, Double>());
 
-        userContext.setGameMap(new GameMap());
+        userContext.setGameMap(MapUtility.generateMap());
+
+    }
+
+    public void generateMap()
+    {
+        userContext.setGameMap(MapUtility.generateMap());
     }
 
     public void addNewHuman()
