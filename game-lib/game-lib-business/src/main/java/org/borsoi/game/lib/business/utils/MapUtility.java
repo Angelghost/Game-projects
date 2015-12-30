@@ -1,6 +1,8 @@
 package org.borsoi.game.lib.business.utils;
 
 import org.borsoi.game.lib.object.object.map.GameMap;
+import org.borsoi.game.lib.object.object.map.tile.CityCase;
+import org.borsoi.game.lib.object.object.map.tile.EmptyTile;
 
 public class MapUtility
 {
@@ -19,9 +21,14 @@ public class MapUtility
         {
             for (int j = 0; j < 50; j++)
             {
-                gameMap.putTitle(i, j, perlinNoisGenerate[i][j], null);
+                gameMap.putTitle(i, j, perlinNoisGenerate[i][j], new EmptyTile());
             }
         }
+
+        CityCase cityCase = new CityCase();
+        cityCase.setPrincipal(true);
+        gameMap.putTitle(25, 25, cityCase);
+
         return gameMap;
     }
 

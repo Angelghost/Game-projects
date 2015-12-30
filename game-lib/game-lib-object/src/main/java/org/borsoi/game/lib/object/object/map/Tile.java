@@ -1,5 +1,10 @@
 package org.borsoi.game.lib.object.object.map;
 
+import java.util.List;
+
+import org.borsoi.game.lib.object.object.Humanoide;
+import org.borsoi.game.lib.object.object.map.tile.Case;
+
 public class Tile
 {
 
@@ -16,7 +21,9 @@ public class Tile
 
     private float type;
 
-    private Object value;
+    private Case value;
+
+    private List<Humanoide> humanoideList;
 
     /**
      * Return x
@@ -40,7 +47,7 @@ public class Tile
      * Return value
      * @return value
      */
-    public Object getValue()
+    public Case getValue()
     {
         return value;
     }
@@ -49,7 +56,7 @@ public class Tile
      * Set value
      * @param pValue value
      */
-    public void setValue(Object pValue)
+    public void setValue(Case pValue)
     {
         value = pValue;
     }
@@ -61,6 +68,24 @@ public class Tile
     public float getType()
     {
         return type;
+    }
+
+    /**
+     * Return humanoideList
+     * @return humanoideList
+     */
+    public List<Humanoide> getHumanoideList()
+    {
+        return humanoideList;
+    }
+
+    /**
+     * Set humanoideList
+     * @param pHumanoideList humanoideList
+     */
+    public void setHumanoideList(List<Humanoide> pHumanoideList)
+    {
+        humanoideList = pHumanoideList;
     }
 
 }

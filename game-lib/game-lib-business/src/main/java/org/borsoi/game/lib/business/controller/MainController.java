@@ -7,10 +7,13 @@ import java.util.Map;
 
 import org.borsoi.game.lib.business.utils.MapUtility;
 import org.borsoi.game.lib.object.enumeric.ResourceType;
+import org.borsoi.game.lib.object.object.Humanoide;
 import org.borsoi.game.lib.object.object.UserContext;
 import org.borsoi.game.lib.object.object.human.Human;
 import org.borsoi.game.lib.object.object.job.Modification;
 import org.borsoi.game.lib.object.object.job.Resource;
+import org.borsoi.game.lib.object.object.map.Tile;
+import org.borsoi.game.lib.object.object.map.tile.CityCase;
 
 public class MainController
 {
@@ -35,17 +38,29 @@ public class MainController
         userContext.setTotalModificationMap(new HashMap<ResourceType, Double>());
 
         userContext.setGameMap(MapUtility.generateMap());
-
+        userContext.setHumanCityList(new ArrayList<Tile>());
+        userContext.getHumanCityList().add(userContext.getGameMap().getTitle(25, 25));
     }
 
     public void generateMap()
     {
         userContext.setGameMap(MapUtility.generateMap());
+        userContext.setHumanCityList(new ArrayList<Tile>());
+        userContext.getHumanCityList().add(userContext.getGameMap().getTitle(25, 25));
     }
 
     public void addNewHuman()
     {
-        getHumanList().add(new Human());
+        for (Tile tile : userContext.getHumanCityList())
+        {
+            Human human = new Human();
+            if (tile.getHumanoideList() == null)
+            {
+                tile.setHumanoideList(new ArrayList<Humanoide>());
+            }
+            tile.getHumanoideList().add(human);
+            getHumanList().add(human);
+        }
         updateModifcation();
     }
 
@@ -108,6 +123,31 @@ public class MainController
         }
 
         return true;
+    }
+
+    /**
+     * 
+     */
+    public void expandCity()
+    {
+        for (Tile tile : userContext.getHumanCityList())
+        {
+            if (tile.getHumanoideList().size() > 20)
+            {
+                CityCase cityCase = new CityCase();
+                userContext.getGameMap().putTitle(24, 24, cityCase);
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (userContext.getGameMap().getTitle(24, 24).getHumanoideList() == null)
+                    {
+                        userContext.getGameMap().getTitle(24, 24).setHumanoideList(new ArrayList<Humanoide>());
+                    }
+                    userContext.getGameMap().getTitle(24, 24).getHumanoideList().add(tile.getHumanoideList().remove(i));
+                }
+            }
+        }
+
     }
 
     public synchronized List<Human> getHumanList()

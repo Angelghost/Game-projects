@@ -7,6 +7,7 @@ import org.borsoi.game.lib.object.enumeric.ResourceType;
 import org.borsoi.game.lib.object.object.job.Modification;
 import org.borsoi.game.lib.object.object.job.Resource;
 import org.borsoi.game.lib.object.object.map.GameMap;
+import org.borsoi.game.lib.object.object.map.Tile;
 
 public class UserContext
 {
@@ -15,6 +16,8 @@ public class UserContext
     private Map<ResourceType, Double> totalModificationMap;
 
     private List<Modification> modificationList;
+
+    private List<Tile> humanCityList;
 
     private GameMap gameMap;
 
@@ -77,6 +80,24 @@ public class UserContext
     public GameMap getGameMap()
     {
         return gameMap;
+    }
+
+    /**
+     * Return humanCityList
+     * @return humanCityList
+     */
+    public List<Tile> getHumanCityList()
+    {
+        return humanCityList;
+    }
+
+    /**
+     * Set humanCityList
+     * @param pHumanCityList humanCityList
+     */
+    public void setHumanCityList(List<Tile> pHumanCityList)
+    {
+        humanCityList = pHumanCityList;
     }
 
     /**

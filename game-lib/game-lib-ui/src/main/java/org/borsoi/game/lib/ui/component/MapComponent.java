@@ -10,6 +10,7 @@ import javax.faces.context.ResponseWriter;
 
 import org.borsoi.game.lib.object.object.map.GameMap;
 import org.borsoi.game.lib.object.object.map.Tile;
+import org.borsoi.game.lib.object.object.map.tile.CityCase;
 
 @FacesComponent("components.MapComponent")
 public class MapComponent
@@ -55,6 +56,11 @@ public class MapComponent
                         writer.startElement("td", null);
                         writer.writeAttribute("style", "background-color:" + getColor(tile.getType())
                             + ";  width:20px; border:none;padding-right: 4px;padding-left: 4px;height: 20px;", "");
+
+                        if (tile.getValue() instanceof CityCase)
+                        {
+                            writer.write("X");
+                        }
                         writer.endElement("td");
                     }
 

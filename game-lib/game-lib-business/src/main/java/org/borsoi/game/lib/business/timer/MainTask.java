@@ -7,6 +7,7 @@ public class MainTask
 
     public static void run(MainController pMainController)
     {
+        pMainController.expandCity();
         pMainController.addNewHuman();
         pMainController.updateUserContext();
     }

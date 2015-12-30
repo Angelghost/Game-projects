@@ -3,6 +3,9 @@ package org.borsoi.game.lib.object.object.map;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.borsoi.game.lib.object.object.map.tile.Case;
+import org.borsoi.game.lib.object.object.map.tile.CityCase;
+
 public class GameMap
 {
 
@@ -26,7 +29,17 @@ public class GameMap
         return null;
     }
 
-    public void putTitle(int x, int y, float type, Object pValue)
+    /**
+     * @param pI
+     * @param pI2
+     * @param pCityCase
+     */
+    public void putTitle(int x, int y, CityCase pValue)
+    {
+        putTitle(x, y, map.get(x).get(y).getType(), pValue);
+    }
+
+    public void putTitle(int x, int y, float type, Case pValue)
     {
         Tile tile = new Tile(x, y, type);
         tile.setValue(pValue);
@@ -60,4 +73,5 @@ public class GameMap
     {
         map = pMap;
     }
+
 }
