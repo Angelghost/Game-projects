@@ -11,6 +11,7 @@ import javax.faces.context.ResponseWriter;
 import org.borsoi.game.lib.object.object.map.GameMap;
 import org.borsoi.game.lib.object.object.map.Tile;
 import org.borsoi.game.lib.object.object.map.tile.CityCase;
+import org.primefaces.component.commandbutton.CommandButton;
 
 @FacesComponent("components.MapComponent")
 public class MapComponent
@@ -54,13 +55,31 @@ public class MapComponent
                         Tile tile = value.getTitle(i, y);
 
                         writer.startElement("td", null);
-                        writer.writeAttribute("style", "background-color:" + getColor(tile.getType())
-                            + ";  width:20px; border:none;padding-right: 4px;padding-left: 4px;height: 20px;", "");
+                        writer.writeAttribute("style", " width:20px; border:none;padding: 0px;height: 20px;", "");
+
+                        CommandButton button =
+                            (CommandButton) FacesContext
+                                .getCurrentInstance()
+                                .getApplication()
+                                .createComponent(context, CommandButton.COMPONENT_TYPE,
+                                    "org.borsoi.component.CommandButtonRenderer");
+
+                        button.setAjax(true);
+                        button.setStyle("background-color:" + getColor(tile.getType())
+                            + ";  width:20px; border:none;padding: 0px; margin:0px;height: 20px;");
+
+                        // MethodExpression changeMethod =
+                        // context.getApplication().getExpressionFactory()
+                        // .createMethodExpression(context.getELContext(), pExpression, pExpectedReturnType,
+                        // pExpectedParamTypes);
+                        //
+                        // button.setActionExpression(changeMethod);
 
                         if (tile.getValue() instanceof CityCase)
                         {
-                            writer.write("X");
+                            button.setValue("X");
                         }
+                        button.encodeAll(context);
                         writer.endElement("td");
                     }
 

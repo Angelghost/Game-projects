@@ -132,7 +132,7 @@ public class MainController
     {
         for (Tile tile : userContext.getHumanCityList())
         {
-            if (tile.getHumanoideList().size() > 20)
+            if (tile.getHumanoideList() != null && tile.getHumanoideList().size() > 20)
             {
                 CityCase cityCase = new CityCase();
                 userContext.getGameMap().putTitle(24, 24, cityCase);
