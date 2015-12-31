@@ -11,7 +11,8 @@ import javax.faces.context.ResponseWriter;
 import org.borsoi.game.lib.object.object.map.GameMap;
 import org.borsoi.game.lib.object.object.map.Tile;
 import org.borsoi.game.lib.object.object.map.tile.CityCase;
-import org.primefaces.component.commandbutton.CommandButton;
+
+import com.google.gson.Gson;
 
 @FacesComponent("components.MapComponent")
 public class MapComponent
@@ -55,31 +56,56 @@ public class MapComponent
                         Tile tile = value.getTitle(i, y);
 
                         writer.startElement("td", null);
-                        writer.writeAttribute("style", " width:20px; border:none;padding: 0px;height: 20px;", "");
+                        writer.writeAttribute(
+                            "style",
+                            " width:20px; border:none;padding: 0px;height: 20px; background-color:"
+                                + getColor(tile.getType()) + ";", "");
 
-                        CommandButton button =
-                            (CommandButton) FacesContext
-                                .getCurrentInstance()
-                                .getApplication()
-                                .createComponent(context, CommandButton.COMPONENT_TYPE,
-                                    "org.borsoi.component.CommandButtonRenderer");
+                        Gson gson = new Gson();
+                        String json = gson.toJson(tile);
 
-                        button.setAjax(true);
-                        button.setStyle("background-color:" + getColor(tile.getType())
-                            + ";  width:20px; border:none;padding: 0px; margin:0px;height: 20px;");
-
+                        writer.writeAttribute("onclick", "selectTile(this," + json + ");", "");
+                        writer.writeAttribute("id", "tile-" + tile.getX() + "-" + tile.getY(), "");
+                        // CommandButton button = (CommandButton) getFacets().get(tile.getX() + "-" + tile.getY());
+                        //
+                        // if (button == null)
+                        // {
+                        //
+                        // button =
+                        // (CommandButton) FacesContext
+                        // .getCurrentInstance()
+                        // .getApplication()
+                        // .createComponent(context, CommandButton.COMPONENT_TYPE,
+                        // "org.borsoi.component.CommandButtonRenderer");
+                        //
+                        // button.setAjax(true);
+                        // button.setStyle("background-color:" + getColor(tile.getType())
+                        // + ";  width:20px; border:none;padding: 0px; margin:0px;height: 20px;");
+                        //
                         // MethodExpression changeMethod =
-                        // context.getApplication().getExpressionFactory()
-                        // .createMethodExpression(context.getELContext(), pExpression, pExpectedReturnType,
-                        // pExpectedParamTypes);
+                        // context
+                        // .getApplication()
+                        // .getExpressionFactory()
+                        // .createMethodExpression(
+                        // context.getELContext(),
+                        // ControllerNameConstants.MAIN_CONTEXT_CONTROLLER + ".selectTile(" + tile.getX()
+                        // + "," + tile.getY() + ")", String.class,
+                        // new Class<?>[] { Integer.class, Integer.class });
+                        //
+                        // button.setType("submit");
+                        // button.setUpdate("@([id$=screen])");
+                        // button.setStyleClass("tile-css");
                         //
                         // button.setActionExpression(changeMethod);
-
                         if (tile.getValue() instanceof CityCase)
                         {
-                            button.setValue("X");
+                            writer.write("X");
                         }
-                        button.encodeAll(context);
+                        // }
+                        //
+                        // getFacets().put(tile.getX() + "-" + tile.getY(), button);
+                        //
+                        // button.encodeAll(context);
                         writer.endElement("td");
                     }
 

@@ -15,6 +15,7 @@ import org.borsoi.game.lib.object.enumeric.ResourceType;
 import org.borsoi.game.lib.object.object.UserContext;
 import org.borsoi.game.lib.object.object.human.Human;
 import org.borsoi.game.lib.object.object.job.Resource;
+import org.borsoi.game.lib.object.object.map.Tile;
 
 @ManagedBean(name = "outputController")
 @SessionScoped
@@ -26,20 +27,48 @@ public class OutputController
 
     private List<String> output;
 
-    public void showMainScreen(MainController pMainController)
+    public void showMainScreen(MainController pMainController, Tile pTileSelected)
     {
 
         List<String> stringToDeplay = new ArrayList<String>();
         // cleanConsole();
+        if (pTileSelected != null)
+        {
+            stringToDeplay.addAll(showTileSelected(pTileSelected));
+        }
         stringToDeplay.addAll(showResources(pMainController.getUserContext()));
         stringToDeplay.add(drawALine());
         stringToDeplay.addAll(showJob(pMainController.getHumanList()));
         stringToDeplay.add(drawALine());
-        stringToDeplay.addAll(showMenu());
-        stringToDeplay.add(drawALine());
-
+        // stringToDeplay.addAll(showMenu());
+        // stringToDeplay.add(drawALine());
         setOutput(stringToDeplay);
 
+    }
+
+    /**
+     * @param pTileSelected
+     */
+    private List<String> showTileSelected(Tile pTileSelected)
+    {
+
+        List<String> stringToDeplay = new ArrayList<String>();
+
+        stringToDeplay.add("Tile selected  (" + pTileSelected.getX() + "," + pTileSelected.getY() + ")");
+        if (pTileSelected.getHumanoideList() != null)
+        {
+            stringToDeplay.add("Human : " + pTileSelected.getHumanoideList().size());
+
+        }
+
+        stringToDeplay.add(drawALine());
+
+        if (output == null)
+        {
+            output = new ArrayList<String>();
+        }
+
+        return stringToDeplay;
     }
 
     private List<String> showResources(UserContext userContext)

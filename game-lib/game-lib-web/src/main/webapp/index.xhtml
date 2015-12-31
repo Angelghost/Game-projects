@@ -13,35 +13,42 @@
 </h:head>
 <h:body>
 	<h1>GAME LIB:</h1>
-
-	<!-- 	<script type="text/javascript"> 
-// 		setInterval(function() {
-// 			updateCommand();
-// 		}, 5 * 1000);
-	</script> -->
+	<h:outputScript library="js" name="game-lib.js" target="head" />
+	<script type="text/javascript">
+		setInterval(function() {
+			updateCommand();
+		}, 5 * 1000);
+	</script>
 	<h:form>
 		<p:remoteCommand name="updateCommand" update="screen"
-			action="#{mainContextController.updatePage()}" />
-		<p:panelGrid id="screen" columns="2">
-			<p:panel>
+			action="#{mainContextController.updatePage()}"
+			oncomplete="updateSelectedTile()" />
+		<p:commandButton value="Update" id="ajax"
+			action="#{mainContextController.updatePage()}" update="screen-stat" />
+		<p:commandButton value="New map"
+			action="#{mainContextController.generateMap()}" update="screen" />
+		<p:commandButton value="H" action="#{inputController.addHuman()}"
+			update="screen" oncomplete="updateSelectedTile()">
+			<f:ajax oncomplete="updateSelectedTile()" />
+		</p:commandButton>
+
+		<p:commandButton value="F" action="#{inputController.addFarmer()}"
+			update="screen" />
+		<p:commandButton value="W" action="#{inputController.addWoodCutter()}"
+			update="screen" />
+		<p:panelGrid id="screen" columns="3">
+			<p:panel id="screen-stat">
 				<c:forEach items="#{outputController.output}" var="output">
 					<div style="white-space: pre-wrap">
 						<h:outputText value="#{output}" />
 					</div>
 				</c:forEach>
 			</p:panel>
-			<b:mapComponent value="#{mainContextController.getGameMap()}" />
+			<b:mapComponent id="screen-map"
+				value="#{mainContextController.getGameMap()}" />
+			<div id="tileMenu"></div>
 		</p:panelGrid>
-		<p:commandButton value="Update" id="ajax"
-			action="#{mainContextController.updatePage()}" update="screen" />
-		<p:commandButton value="New map"
-			action="#{mainContextController.generateMap()}" update="screen" />
-		<p:commandButton value="H" action="#{inputController.addHuman()}"
-			update="screen" />
-		<p:commandButton value="F" action="#{inputController.addFarmer()}"
-			update="screen" />
-		<p:commandButton value="W" action="#{inputController.addWoodCutter()}"
-			update="screen" />
+
 	</h:form>
 
 </h:body>

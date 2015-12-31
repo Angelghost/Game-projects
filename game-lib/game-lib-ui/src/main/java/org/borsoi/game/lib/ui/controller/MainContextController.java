@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import org.borsoi.game.lib.business.controller.MainController;
 import org.borsoi.game.lib.business.timer.MainTimer;
 import org.borsoi.game.lib.object.object.map.GameMap;
+import org.borsoi.game.lib.object.object.map.Tile;
 import org.borsoi.game.lib.ui.contants.ControllerNameConstants;
 
 @ManagedBean(name = ControllerNameConstants.MAIN_CONTEXT_CONTROLLER)
@@ -25,6 +26,8 @@ public class MainContextController
 
     private MainController mainController;
 
+    private Tile tileSelected;
+
     @PostConstruct
     public void init()
     {
@@ -37,7 +40,7 @@ public class MainContextController
 
         t.start();
 
-        outputController.showMainScreen(mainController);
+        outputController.showMainScreen(mainController, tileSelected);
     }
 
     public void generateMap()
@@ -47,12 +50,20 @@ public class MainContextController
 
     public void updatePage()
     {
-        outputController.showMainScreen(mainController);
+        outputController.showMainScreen(mainController, tileSelected);
     }
 
     public GameMap getGameMap()
     {
         return mainController.getUserContext().getGameMap();
+    }
+
+    public String selectTile(int x, int y)
+    {
+
+        tileSelected = mainController.getUserContext().getGameMap().getTitle(x, y);
+        outputController.showMainScreen(mainController, tileSelected);
+        return null;
     }
 
     /**
