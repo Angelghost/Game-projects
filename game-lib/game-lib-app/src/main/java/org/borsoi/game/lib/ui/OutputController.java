@@ -1,8 +1,7 @@
-package org.borsoi.game.lib.ui.controller;
+package org.borsoi.game.lib.ui;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,20 +27,15 @@ public class OutputController
 
     private List<String> output;
 
-    public void showMainScreen(MainController pMainController, Tile pTileSelected, Tile psecondTileSelected)
+    public void showMainScreen(MainController pMainController, Tile pTileSelected)
     {
 
         List<String> stringToDeplay = new ArrayList<String>();
         // cleanConsole();
-        if (pTileSelected != null && psecondTileSelected == null)
+        if (pTileSelected != null)
         {
             stringToDeplay.addAll(showTileSelected(pTileSelected));
         }
-        else if(pTileSelected != null && psecondTileSelected != null)
-        {
-        	 stringToDeplay.addAll(showTilesSelected(pTileSelected));
-        }
-        
         stringToDeplay.addAll(showResources(pMainController.getUserContext()));
         stringToDeplay.add(drawALine());
         stringToDeplay.addAll(showJob(pMainController.getHumanList()));
@@ -52,34 +46,7 @@ public class OutputController
 
     }
 
-    private List<String>  showTilesSelected(Tile pTileSelected) {
-    	 List<String> stringToDeplay = new ArrayList<String>();
-
-         stringToDeplay.add("First Tile selected  (" + pTileSelected.getX() + "," + pTileSelected.getY() + ")");
-         if (pTileSelected.getHumanoideList() != null)
-         {
-             stringToDeplay.add("Human : " + pTileSelected.getHumanoideList().size());
-
-         }
-
-         stringToDeplay.add("Second Tile selected  (" + pTileSelected.getX() + "," + pTileSelected.getY() + ")");
-         if (pTileSelected.getHumanoideList() != null)
-         {
-             stringToDeplay.add("Human : " + pTileSelected.getHumanoideList().size());
-
-         }
-         
-         stringToDeplay.add(drawALine());
-
-         if (output == null)
-         {
-             output = new ArrayList<String>();
-         }
-
-         return stringToDeplay;
-	}
-
-	/**
+    /**
      * @param pTileSelected
      */
     private List<String> showTileSelected(Tile pTileSelected)

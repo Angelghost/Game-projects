@@ -11,5 +11,6 @@
     <module>game-lib-business</module>
     <module>game-lib-object</module>
     <module>game-lib-web</module>
+    <module>game-lib-app</module>
   </modules>
 </project>

@@ -58,7 +58,7 @@ public class MapComponent
                         writer.startElement("td", null);
                         writer.writeAttribute(
                             "style",
-                            " width:20px; border:none;padding: 0px;height: 20px; background-color:"
+                            " width:30px; border:none;padding: 0px;height: 30px; background-color:"
                                 + getColor(tile.getType()) + ";", "");
 
                         Gson gson = new Gson();

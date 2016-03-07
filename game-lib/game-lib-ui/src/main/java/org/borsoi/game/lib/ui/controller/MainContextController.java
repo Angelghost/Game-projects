@@ -15,80 +15,87 @@ import org.borsoi.game.lib.ui.contants.ControllerNameConstants;
 
 @ManagedBean(name = ControllerNameConstants.MAIN_CONTEXT_CONTROLLER)
 @SessionScoped
-public class MainContextController
-    implements Serializable
-{
+public class MainContextController implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @ManagedProperty(value = "#{outputController}")
-    private OutputController outputController;
+	@ManagedProperty(value = "#{outputController}")
+	private OutputController outputController;
 
-    private MainController mainController;
+	private MainController mainController;
 
-    private Tile tileSelected;
+	private Tile firstTileSelected;
 
-    @PostConstruct
-    public void init()
-    {
+	private Tile secondTileSelected;
 
-        mainController = new MainController();
+	@PostConstruct
+	public void init() {
 
-        MainTimer mainTimer = new MainTimer(mainController);
+		mainController = new MainController();
 
-        Thread t = new Thread(mainTimer);
+		MainTimer mainTimer = new MainTimer(mainController);
 
-        t.start();
+		Thread t = new Thread(mainTimer);
 
-        outputController.showMainScreen(mainController, tileSelected);
-    }
+		t.start();
 
-    public void generateMap()
-    {
-        mainController.generateMap();
-    }
+		outputController.showMainScreen(mainController, firstTileSelected,secondTileSelected);
+	}
 
-    public void updatePage()
-    {
-        outputController.showMainScreen(mainController, tileSelected);
-    }
+	public void generateMap() {
+		mainController.generateMap();
+	}
 
-    public GameMap getGameMap()
-    {
-        return mainController.getUserContext().getGameMap();
-    }
+	public void updatePage() {
+		outputController.showMainScreen(mainController, firstTileSelected,secondTileSelected);
+	}
 
-    public String selectTile(int x, int y)
-    {
+	public GameMap getGameMap() {
+		return mainController.getUserContext().getGameMap();
+	}
 
-        tileSelected = mainController.getUserContext().getGameMap().getTitle(x, y);
-        outputController.showMainScreen(mainController, tileSelected);
-        return null;
-    }
+	public String selectTile(int x, int y) {
 
-    /**
-     * Return outputController
-     * @return outputController
-     */
-    public OutputController getOutputController()
-    {
-        return outputController;
-    }
+		if (firstTileSelected == null) {
+			firstTileSelected = mainController.getUserContext().getGameMap()
+					.getTitle(x, y);
+		} else if (secondTileSelected == null) {
+			secondTileSelected = mainController.getUserContext().getGameMap()
+					.getTitle(x, y);
+		} else {
+			firstTileSelected = mainController.getUserContext().getGameMap()
+					.getTitle(x, y);
 
-    /**
-     * Set outputController
-     * @param pOutputController outputController
-     */
-    public void setOutputController(OutputController pOutputController)
-    {
-        outputController = pOutputController;
-    }
+			secondTileSelected = null;
+		}
 
-    /**
-     * @return
-     */
-    public MainController getMainController()
-    {
-        return mainController;
-    }
+		outputController.showMainScreen(mainController, firstTileSelected,secondTileSelected);
+		return null;
+	}
+
+	/**
+	 * Return outputController
+	 * 
+	 * @return outputController
+	 */
+	public OutputController getOutputController() {
+		return outputController;
+	}
+
+	/**
+	 * Set outputController
+	 * 
+	 * @param pOutputController
+	 *            outputController
+	 */
+	public void setOutputController(OutputController pOutputController) {
+		outputController = pOutputController;
+	}
+
+	/**
+	 * @return
+	 */
+	public MainController getMainController() {
+		return mainController;
+	}
 }
