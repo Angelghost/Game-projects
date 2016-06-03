@@ -16,14 +16,25 @@ public class OutputController {
 	public static void showMainScreen(MainController pMainController) {
 
 		cleanConsole();
+		drawMap(pMainController.getUserContext());
+		drawALine();
 		showResources(pMainController.getUserContext());
 		drawALine();
 		showJob(pMainController.getHumanList());
 		drawALine();
 		showMenu();
 		drawALine();
+		
 	}
 
+private static void showResources(UserContext userContext) {
+		if (userContext != null) {
+			//	for( userContext.getGameMap().getMap())
+			
+		}
+
+	}
+	
 	private static void showResources(UserContext userContext) {
 		if (userContext != null) {
 			System.out.println("Resources    : ");

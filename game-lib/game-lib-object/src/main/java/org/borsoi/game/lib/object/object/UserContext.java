@@ -15,7 +15,10 @@ public class UserContext
     private	Map<ResourceType, Double> totalModificationMap;
 
     private List<Modification> modificationList;
+	
+	  private List<Tile> humanCityList;
 
+	  private GameMap gameMap;
 
     /**
      * Return modificationList
@@ -63,4 +66,39 @@ public class UserContext
 		this.resourceList = resourceList;
 	}
 
+	/**
+     * Return gameMap
+     * @return gameMap
+     */
+    public GameMap getGameMap()
+    {
+        return gameMap;
+    }
+
+    /**
+     * Return humanCityList
+     * @return humanCityList
+     */
+    public List<Tile> getHumanCityList()
+    {
+        return humanCityList;
+    }
+
+    /**
+     * Set humanCityList
+     * @param pHumanCityList humanCityList
+     */
+    public void setHumanCityList(List<Tile> pHumanCityList)
+    {
+        humanCityList = pHumanCityList;
+    }
+
+    /**
+     * Set gameMap
+     * @param pGameMap gameMap
+     */
+    public void setGameMap(GameMap pGameMap)
+    {
+        gameMap = pGameMap;
+    }
 }

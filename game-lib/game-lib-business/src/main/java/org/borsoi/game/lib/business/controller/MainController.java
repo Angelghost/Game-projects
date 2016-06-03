@@ -31,9 +31,14 @@ public class MainController {
 		userContext.setModificationList(new ArrayList<Modification>());
 		userContext
 				.setTotalModificationMap(new HashMap<ResourceType, Double>());
-
+		userContext.setGameMap(MapUtility.generateMap());
 	}
 
+	public void generateMap() {
+		userContext.setGameMap(MapUtility.generateMap());
+
+	}
+	
 	public void addNewHuman() {
 		getHumanList().add(new Human());
 		updateModifcation();
