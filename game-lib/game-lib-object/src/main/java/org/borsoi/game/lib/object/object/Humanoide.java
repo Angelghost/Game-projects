@@ -1,6 +1,9 @@
 package org.borsoi.game.lib.object.object;
 
 import java.io.Serializable;
+import java.util.Map;
+
+import org.borsoi.game.lib.object.enumeric.Carateritics;
 
 public class Humanoide implements Serializable {
 
@@ -9,21 +12,11 @@ public class Humanoide implements Serializable {
 	 */
 	private static final long serialVersionUID = -7426634369606252579L;
 
-	private int life;
 	
 	private int maxLife;
 	
-	private int minDamage;
+	private Map<Carateritics,Long> carateritics;
 	
-	private int maxDamage;
-
-	public int getLife() {
-		return life;
-	}
-
-	public void setLife(int life) {
-		this.life = life;
-	}
 
 	public int getMaxLife() {
 		return maxLife;
@@ -33,20 +26,12 @@ public class Humanoide implements Serializable {
 		this.maxLife = maxLife;
 	}
 
-	public int getMinDamage() {
-		return minDamage;
+	public Map<Carateritics,Long> getCarateritics() {
+		return carateritics;
 	}
 
-	public void setMinDamage(int minDamage) {
-		this.minDamage = minDamage;
+	public void setCarateritics(Map<Carateritics,Long> carateritics) {
+		this.carateritics = carateritics;
 	}
 
-	public int getMaxDamage() {
-		return maxDamage;
-	}
-
-	public void setMaxDamage(int maxDamage) {
-		this.maxDamage = maxDamage;
-	}
-	
 }

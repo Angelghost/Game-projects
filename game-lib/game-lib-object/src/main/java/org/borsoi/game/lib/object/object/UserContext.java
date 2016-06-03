@@ -1,4 +1,3 @@
-
 package org.borsoi.game.lib.object.object;
 
 import java.util.List;
@@ -7,36 +6,38 @@ import java.util.Map;
 import org.borsoi.game.lib.object.enumeric.ResourceType;
 import org.borsoi.game.lib.object.object.job.Modification;
 import org.borsoi.game.lib.object.object.job.Resource;
+import org.borsoi.game.lib.object.object.map.GameMap;
+import org.borsoi.game.lib.object.object.map.Tile;
 
-public class UserContext
-{
-    private List<Resource> resourceList;
+public class UserContext {
+	private List<Resource> resourceList;
 
-    private	Map<ResourceType, Double> totalModificationMap;
+	private Map<ResourceType, Double> totalModificationMap;
 
-    private List<Modification> modificationList;
-	
-	  private List<Tile> humanCityList;
+	private List<Modification> modificationList;
 
-	  private GameMap gameMap;
+	private List<Tile> humanCityList;
 
-    /**
-     * Return modificationList
-     * @return modificationList
-     */
-    public List<Modification> getModificationList()
-    {
-        return modificationList;
-    }
+	private GameMap gameMap;
 
-    /**
-     * Set modificationList
-     * @param pModificationList modificationList
-     */
-    public void setModificationList(List<Modification> pModificationList)
-    {
-        modificationList = pModificationList;
-    }
+	/**
+	 * Return modificationList
+	 * 
+	 * @return modificationList
+	 */
+	public List<Modification> getModificationList() {
+		return modificationList;
+	}
+
+	/**
+	 * Set modificationList
+	 * 
+	 * @param pModificationList
+	 *            modificationList
+	 */
+	public void setModificationList(List<Modification> pModificationList) {
+		modificationList = pModificationList;
+	}
 
 	/**
 	 * @return the totalModificationMap
@@ -46,9 +47,11 @@ public class UserContext
 	}
 
 	/**
-	 * @param totalModificationMap the totalModificationMap to set
+	 * @param totalModificationMap
+	 *            the totalModificationMap to set
 	 */
-	public void setTotalModificationMap(Map<ResourceType, Double> totalModificationMap) {
+	public void setTotalModificationMap(
+			Map<ResourceType, Double> totalModificationMap) {
 		this.totalModificationMap = totalModificationMap;
 	}
 
@@ -60,45 +63,48 @@ public class UserContext
 	}
 
 	/**
-	 * @param resourceList the resourceList to set
+	 * @param resourceList
+	 *            the resourceList to set
 	 */
 	public void setResourceList(List<Resource> resourceList) {
 		this.resourceList = resourceList;
 	}
 
 	/**
-     * Return gameMap
-     * @return gameMap
-     */
-    public GameMap getGameMap()
-    {
-        return gameMap;
-    }
+	 * Return gameMap
+	 * 
+	 * @return gameMap
+	 */
+	public GameMap getGameMap() {
+		return gameMap;
+	}
 
-    /**
-     * Return humanCityList
-     * @return humanCityList
-     */
-    public List<Tile> getHumanCityList()
-    {
-        return humanCityList;
-    }
+	/**
+	 * Return humanCityList
+	 * 
+	 * @return humanCityList
+	 */
+	public List<Tile> getHumanCityList() {
+		return humanCityList;
+	}
 
-    /**
-     * Set humanCityList
-     * @param pHumanCityList humanCityList
-     */
-    public void setHumanCityList(List<Tile> pHumanCityList)
-    {
-        humanCityList = pHumanCityList;
-    }
+	/**
+	 * Set humanCityList
+	 * 
+	 * @param pHumanCityList
+	 *            humanCityList
+	 */
+	public void setHumanCityList(List<Tile> pHumanCityList) {
+		humanCityList = pHumanCityList;
+	}
 
-    /**
-     * Set gameMap
-     * @param pGameMap gameMap
-     */
-    public void setGameMap(GameMap pGameMap)
-    {
-        gameMap = pGameMap;
-    }
+	/**
+	 * Set gameMap
+	 * 
+	 * @param pGameMap
+	 *            gameMap
+	 */
+	public void setGameMap(GameMap pGameMap) {
+		gameMap = pGameMap;
+	}
 }

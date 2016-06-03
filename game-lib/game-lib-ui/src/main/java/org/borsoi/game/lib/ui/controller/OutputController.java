@@ -27,9 +27,8 @@ public class OutputController {
 		
 	}
 
-private static void showResources(UserContext userContext) {
+private static void drawMap(UserContext userContext) {
 		if (userContext != null) {
-			//	for( userContext.getGameMap().getMap())
 			
 		}
 
