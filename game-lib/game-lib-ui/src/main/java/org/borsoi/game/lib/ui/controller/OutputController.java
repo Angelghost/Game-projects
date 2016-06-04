@@ -29,7 +29,10 @@ public class OutputController {
 
 private static void drawMap(UserContext userContext) {
 		if (userContext != null) {
-			
+			for(Integer key :	userContext.getGameMap().getMap().keySet())
+		{
+				System.out.println(key + "          ");
+		}
 		}
 
 	}

@@ -6,6 +6,7 @@ public enum Carateritics {
 	    MP ,
 	    SP ,
 	    Strength,
+			Defend,
 	    Vitality,
 	    Magic ,
 	    Spirit,
