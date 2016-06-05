@@ -1,18 +1,18 @@
 package org.borsoi.game.lib.business.utils;
 
+import org.borsoi.game.lib.object.enumeric.Carateritics;
 import org.borsoi.game.lib.object.object.Humanoide;
 
 public final class FightUtility {
 
-	
 	/**
-	* make a round on a fight return 1 if humanoid2 died 
-	*/
-	public static boolean makeAFight(Humanoide pHumanoide1, Humanoide pHumanoide2) {
-		
-		int str1 = pHumanoide1.getCarateritics().get(Carateritics.Strength);
-		
-		int dmCon = 10 ;
+	 * make a round on a fight return 1 if humanoid2 died
+	 */
+	public static int makeAFight(Humanoide pHumanoide1, Humanoide pHumanoide2) {
+
+		long str1 = pHumanoide1.getCarateritics().get(Carateritics.Strength);
+
+		int dmCon = 10;
 		// Step 1 ------------------------------------- [{(Stat^3 ÷ 32) + 32} x
 		// DmCon ÷16]
 		// Step 2 ---------------------------------------- [{(127^3 ÷ 32) + 32}
@@ -25,12 +25,10 @@ public final class FightUtility {
 		// [{(64043 x 1)}]
 		// Step 6 ---------------------------------------------------- Base
 		// Damage = 64043
-		float baseDmg = ((Math.pow(str, 3) / 32) +32) * dmCon /16);
-		
-		
-		int def2 = pHumanoide1.getCarateritics().get(Carateritics.Defend);
-		
-		
+		double baseDmg = ((Math.pow(str1, 3) / 32) + 32) * dmCon / 16;
+
+		double def2 = pHumanoide1.getCarateritics().get(Carateritics.Defend);
+
 		// Step 7 ----------------------------------------- [{(Def - 280.4)^2} ÷
 		// 110] + 16
 		// Step 8 ------------------------------------------ [{(34 - 280.4)^2} ÷
@@ -43,9 +41,9 @@ public final class FightUtility {
 		// [550] + 16
 		// Step 12 ----------------------------------------------------------
 		// DefNum = 566
-	
-		float defNum = ((Math.pow(def2 -280.4,2)) /110) +16;
-		
+
+		double defNum = ((Math.pow(def2 - 280.4, 2)) / 110) + 16;
+
 		// Step 13 ---------------------------------------------- [BaseDmg *
 		// DefNum ÷ 730]
 		// Step 14 --------------------------------------------------- [64043 *
@@ -54,8 +52,8 @@ public final class FightUtility {
 		// [36248338 ÷ 730]
 		// Step 16 ------------------------------------------------- Base Damage
 		// 2 = 49655
-		float baseDmg2 = baseDmg * defNum / 730;
-		
+		double baseDmg2 = baseDmg * defNum / 730;
+
 		// Step 17 ------------ Base Damage 2 * {730 - (Def * 51 - Def^2 ÷ 11) ÷
 		// 10} ÷ 730
 		// Step 18 ---------------------- 49655 * {730 - (34 * 51 - 34^2 ÷ 11) ÷
@@ -72,18 +70,16 @@ public final class FightUtility {
 		// 568 ÷ 730
 		// Step 24 -------------------------------------------------- Final
 		// Damage = 38635
-		
-		float finalDmg = baseDmg2 * (730 - (defNum * 51  - Math.pow(defNum, 2) /11))/10 ) /730 ;
-		
-		
-		int result = pHumanoide2.getMaxLife() - finalDmg;
-		
-		
-		if(result < 0)
-		{
+
+		double finalDmg = baseDmg2
+				* (730 - (defNum * 51 - Math.pow(defNum, 2) / 11)) / 10 / 730;
+
+		double result = pHumanoide2.getMaxLife() - finalDmg;
+
+		if (result < 0) {
 			return 1;
 		}
-		
+
 		return 0;
 	}
 }

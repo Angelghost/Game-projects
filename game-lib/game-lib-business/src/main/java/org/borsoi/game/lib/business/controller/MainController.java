@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.borsoi.game.lib.business.utils.MapUtility;
+import org.borsoi.game.lib.object.enumeric.Carateritics;
 import org.borsoi.game.lib.object.enumeric.ResourceType;
 import org.borsoi.game.lib.object.object.UserContext;
 import org.borsoi.game.lib.object.object.human.Human;
@@ -15,6 +16,8 @@ import org.borsoi.game.lib.object.object.job.Resource;
 public class MainController {
 
 	private List<Human> humanList = new ArrayList<Human>();
+	
+	private Human mainUser;
 
 	private boolean isFinish = false;
 
@@ -33,6 +36,14 @@ public class MainController {
 		userContext
 				.setTotalModificationMap(new HashMap<ResourceType, Double>());
 		userContext.setGameMap(MapUtility.generateMap());
+		
+		
+		setMainUser(new Human());
+		
+		mainUser.setCarateritics(new HashMap<Carateritics, Long>());
+		mainUser.getCarateritics().put(Carateritics.Strength, (long) 10.0);
+		mainUser.getCarateritics().put(Carateritics.Defend, (long) 7);
+		
 	}
 
 	public void generateMap() {
@@ -110,6 +121,20 @@ public class MainController {
 	 */
 	public void setUserContext(UserContext pUserContext) {
 		userContext = pUserContext;
+	}
+
+	/**
+	 * @return the mainUser
+	 */
+	public Human getMainUser() {
+		return mainUser;
+	}
+
+	/**
+	 * @param mainUser the mainUser to set
+	 */
+	public void setMainUser(Human mainUser) {
+		this.mainUser = mainUser;
 	}
 
 }

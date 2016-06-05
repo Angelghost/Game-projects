@@ -3,20 +3,34 @@ package org.borsoi.game.lib.ui.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.borsoi.game.lib.business.controller.MainController;
+import org.borsoi.game.lib.object.enumeric.Carateritics;
 import org.borsoi.game.lib.object.enumeric.JobType;
 import org.borsoi.game.lib.object.enumeric.ResourceType;
 import org.borsoi.game.lib.object.object.UserContext;
 import org.borsoi.game.lib.object.object.human.Human;
 import org.borsoi.game.lib.object.object.job.Resource;
+import org.borsoi.game.lib.object.object.map.Tile;
 
 public class OutputController {
+
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
+	public static final String ANSI_YELLOW = "\u001B[33m";
+	public static final String ANSI_BLUE = "\u001B[34m";
+	public static final String ANSI_PURPLE = "\u001B[35m";
+	public static final String ANSI_CYAN = "\u001B[36m";
+	public static final String ANSI_WHITE = "\u001B[37m";
 
 	public static void showMainScreen(MainController pMainController) {
 
 		cleanConsole();
-		drawMap(pMainController.getUserContext());
+		drawStats(pMainController.getMainUser());
+		// drawMap(pMainController.getUserContext());
 		drawALine();
 		showResources(pMainController.getUserContext());
 		drawALine();
@@ -24,19 +38,54 @@ public class OutputController {
 		drawALine();
 		showMenu();
 		drawALine();
-		
+
 	}
 
-private static void drawMap(UserContext userContext) {
+	private static void drawStats(Human human) {
+		System.out.println("Max liffe : " + human.getMaxLife());
+		if (human.getCarateritics() != null) {
+			for (Entry<Carateritics, Long> entry : human.getCarateritics()
+					.entrySet()) {
+
+				System.out.println(entry.getKey().name() + " : "
+						+ entry.getValue());
+			}
+		}
+	}
+
+	private static void drawMap(UserContext userContext) {
 		if (userContext != null) {
-			for(Integer key :	userContext.getGameMap().getMap().keySet())
-		{
-				System.out.println(key + "          ");
-		}
+			for (Integer i : userContext.getGameMap().getMap().keySet()) {
+				for (Integer j : userContext.getGameMap().getMap().get(i)
+						.keySet()) {
+
+					Tile tile = userContext.getGameMap().getTitle(i, j);
+
+					System.out.print(getColor(tile.getType()) + "[    ]"
+							+ getColor(tile.getType()));
+				}
+				System.out.println();
+			}
 		}
 
 	}
-	
+
+	private static String getColor(float type) {
+
+		if (0 < type && type < 0.3) {
+			return ANSI_BLACK;
+
+		} else if (0.3 <= type && type < 0.5) {
+			return ANSI_GREEN;
+
+		} else if (0.5 <= type && type < 0.6) {
+			return ANSI_YELLOW;
+
+		} else {
+			return ANSI_BLUE;
+		}
+	}
+
 	private static void showResources(UserContext userContext) {
 		if (userContext != null) {
 			System.out.println("Resources    : ");
